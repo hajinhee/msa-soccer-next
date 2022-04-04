@@ -1,0 +1,10 @@
+{
+        "compilerOptions": {
+            "baseUrl": "./pages"
+        },
+        "include": ["pages", 
+            "pages/basic/reducer/counterSlice.js", 
+            "pages/basic/counterReducer.js",
+            "pages/common/store.js", 
+            "pages/common/index.js"]
+}
