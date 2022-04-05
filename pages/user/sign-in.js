@@ -1,28 +1,39 @@
-import React, {useState} from "react";
+import axios from 'axios';
+import React,{useState} from 'react'
+import {Layout} from '../common';
 
-export default function SignIn(){
-const [id, setId] = useState('')
-const [password, setPassword] = useState('')
-const [result, setResult] = useState('')
-                          
-const SignIn = ()=>{
-    let id = document.getElementById('id').value 
-    console.log('id: ' +id)
-    let password = document.getElementById('password').value 
-    console.log('password: ' +password)
-    setId(id)
-    setPassword(password)
-    setResult('아이디: ' +id+ ' 패스워드: ' +password)
-    console.log('result: ' +result)
-}
-return <div><h1>로그인</h1>
-<form action="">
-<label htmlFor=""><b>아이디</b></label><br/>
-<input id="id" type=''/><br/>
-<label htmlFor=""><b>패스워드</b></label><br/>
-<input id="password" type=''/><br/>
-<button onClick={()=>{login()}}>확인</button>
-</form>
-<div>{result}</div>
-</div>
-}
+export default function Login(){
+    const [inputs, setInputs] = useState({})
+
+    const handleChange = e => {
+        e.preventDefault()
+        const {name, value} = e.target;
+        setInputs({
+            ...inputs, [name]: value
+        }) 
+    }
+    const handleSubmit = e => {
+        e.preventDefault()
+        axios.post('', inputs).then(res => {}).catch(err => {})
+
+    }
+
+    return (<>
+        <form action="" onSubmit={handleSubmit}>
+        <h1>로그인폼</h1>
+        <div>
+        <label><b>Username</b></label>
+        <input type="text" name='username' onChange={handleChange}/><br />
+
+        <label htmlFor=""><b>Password</b></label>
+        <input type="text" name='password' onChange={handleChange}/><br />
+
+        <button onSubmit={handleSubmit}>Login</button><br />
+        <label><input type="checkbox" />Remember me</label><br />
+        </div>
+        <div><button>Cancel</button><br />
+        <span>Forgot <a>password?</a></span>
+        </div>
+        </form>
+    </>
+)}

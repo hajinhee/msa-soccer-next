@@ -3,8 +3,6 @@ import React,{useState} from "react"
 
 export default function Calc(){
     const [inputs, setInputs] = useState({})
-    const {num1, opcode, num2} = inputs;
-    const [result, setResult] = useState(0)
 
     const handleChange = (e) => {
         e.preventDefault()

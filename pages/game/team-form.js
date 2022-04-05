@@ -4,7 +4,6 @@ import axios from 'axios';
 
 export default function TeamForm(){
     const [inputs, setInputs] = useState({})
-    const {teamId, orgYyyy, stadiumName, address, tel} = inputs;
     
     const handleChange = e => {
         e.preventDefault()

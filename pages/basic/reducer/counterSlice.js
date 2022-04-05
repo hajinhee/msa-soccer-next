@@ -1,22 +1,14 @@
-import {createSlice} from "@reduxjs/toolkit"  //REstfull 은 모두 JSON
-const initialState = {value: 0}
+import {createSlice} from "@reduxjs/toolkit"
+const initialState = {count: 0}
 const counterSlice = createSlice({
     name: 'counter',
-    initialState, 
+    initialState,
     reducers: {
-        increment: state => {state.value += 1},
-        decrement: state => {state.value -= 1},
-        incrementByAmount : (state, action) => {state.value += action.payload}
-    },
-    extraReducers: (builder) => {
-        builder
-        .addCase(incrementAsync.fulfilled, (state, action) => {
-            state.value += action.payload
-        })
+        increment: state => { state.count += 1},
+        decrement: state => { state.count -= 1}
+        
     }
-}) 
+})
 
-export const { increment, decrement, incrementByAmount} = counterSlice.actions
-export const selectCount = (state) => state.counter.value
-
-export default counterSlice.reducer
+export const { increment, decrement } = counterSlice.actions; 
+export default counterSlice.reducer;

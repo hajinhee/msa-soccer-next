@@ -1,28 +1,54 @@
-import React, {useState} from "react";
+import React, {useState} from "react"
+import axios from "axios";
 
 export default function SignUp(){
-const [id, setId] = useState('')
-const [password, setPassword] = useState('')
-const [result, setResult] = useState('')
-                          
-const SignUp = ()=>{
-    let id = document.getElementById('id').value 
-    console.log('id: ' +id)
-    let password = document.getElementById('password').value 
-    console.log('password: ' +password)
-    setId(id)
-    setPassword(password)
-    setResult('아이디: ' +id+ ' 패스워드: ' +password)
-    console.log('result: ' +result)
-}
-return <div><h1>회원가입</h1>
-<form action="">
-<label htmlFor=""><b>아이디</b></label><br/>
-<input id="id" type=''/><br/>
-<label htmlFor=""><b>패스워드</b></label><br/>
-<input id="password" type=''/><br/>
-<button onClick={()=>{login()}}>확인</button>
-</form>
-<div>{result}</div>
-</div>
+    const proxy = 'http://localhost:5000'
+    const [inputs, Setinputs] = useState({})
+    const {username, password, name, telphone} = inputs;
+    
+    const handleChange = e => {
+        e.preventDefault()
+        const {name, value} = e.target;
+        Setinputs({
+            ...inputs, [name]: value
+        })
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        axios.post(proxy+'/api/user/signup', inputs)
+        .then(res => {
+            const signup = res.data
+            document.getElementById('result-span').innerHTML = `  
+            <h3>${signup.username}님 회원가입 되었습니다.</h3>     
+            `
+        })
+        .catch(err => alert(err))
+    }
+
+
+    return (<>
+        <form action="" onSubmit={handleSubmit}>
+        <h1>회원가입폼</h1>
+        <div>
+            <label><b>사용자 ID</b></label>
+            <input onChange={handleChange} type="text" name='username' /><br />
+    
+            <label htmlFor=""><b>비밀번호</b></label>
+            <input onChange={handleChange} type="text" name='password'/><br />
+            
+            <label><b>이름</b></label>
+            <input onChange={handleChange} type="text" name='name' /><br />
+            
+            <label><b>전화번호</b></label>
+            <input onChange={handleChange} type="text" name='telphone' /><br />
+            
+            <button>전 송</button><br/>
+        </div>
+        <div>
+        <span id='result-span'></span>
+        </div>
+        </form>
+    </>)
+
 }

@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import axios from 'axios';
 
-
-export default function Bmi(){ 
+export default function Bmi(){   // 함수
+    const proxy = 'http://localhost:5000'
     const [inputs, setInputs] = useState({})
-    const {name, height, weight} = inputs; //Object Destructuring
 
     const handleChange = e => {
         e.preventDefault()
@@ -15,7 +14,7 @@ export default function Bmi(){
     }
     const handleSubmit = e => {             // handleClick => 상수 
         e.preventDefault()
-        axios.post('http://localhost:5000/api/basic/bmi', inputs)
+        axios.post(proxy+'/api/basic/bmi', inputs)
         .then(res => {
             const bmi = res.data
             document.getElementById('result-span').innerHTML = `

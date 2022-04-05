@@ -4,25 +4,20 @@ import axios from 'axios';
 
 export default function BoardForm(){       // JSON 은 모두 상태 데이터(디폴트는 변하는 것) 겉은 변하지 않는 제이슨, 안은 변하는 상태
     const [inputs, setInputs] = useState({})
-    const {passengerId, name, teamId, subject} = inputs;
 
     const handleChange = e=> {             // handleChange => 변하는 것
         e.preventDefault()                 // e => event
         const {name, value} = e.target;    
         setInputs({                     
-            ...inputs, [name]: value       // (키값(name)은 상수, 밸류는 변수) => 이 두개를 '상태'라 한다. 
+            ...inputs, [name]: value       
         })
     }
-    const handleSubmit = e => {             // handleClick => 상수 
+
+    const handleSubmit = e => {           
         e.preventDefault()
         axios.post('http://localhost:5000/api/board/write', inputs)
         .then(res => {
-            const write = res.data
-            document.getElementById('result-span').innerHTML = `
-            <h3>게시글 작성자 ID : ${write.passengerId}</h3>
-            <h3>게시글 작성자 이름 : ${write.name}</h3>
-            <h3>응원팀 : ${write.teamId}</h3>
-            <h3>게시글 내용 : ${write.subject}</h3>`
+            alert(`결과 : ${res.data.result}`)
         })
         .catch(err => alert(err))
     }
