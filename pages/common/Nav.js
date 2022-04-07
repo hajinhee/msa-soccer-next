@@ -19,6 +19,7 @@ export default function Nav(){
         <li className={styles.li}> <Link href='/todo/todo-list'>TodoList</Link> </li>
         <li className={styles.li}> <Link href='/user/sign-in'>Signin</Link> </li>
         <li className={styles.li}> <Link href='/user/sign-up'>Signup</Link> </li>
+        <li className={styles.li}> <Link href='/user/user-list'>UserList</Link> </li>
       </ul>
     </nav>
   );                                                                                                      

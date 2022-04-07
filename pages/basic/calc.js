@@ -15,9 +15,7 @@ export default function Calc(){
         e.preventDefault()
         axios.post('http://localhost:5000/api/basic/calc', inputs)
         .then(res => {
-            const calc = res.data
-            document.getElementById('result-span').innerHTML = `
-            <h3>${calc.num1} ${calc.opcode} ${calc.num2} = ${calc.calc}</h3>`
+            alert(`결과 : ${JSON.stringify(res.data.result)}`)
         })
         .catch(err => alert(err))
     }
@@ -41,6 +39,5 @@ export default function Calc(){
                 <input type='submit' value="계산하기"/><br/>
             </div>       
         </form>
-        <div> 결과: <span id='result-span'></span></div>
         </div>   
     )}

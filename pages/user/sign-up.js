@@ -4,7 +4,6 @@ import axios from "axios";
 export default function SignUp(){
     const proxy = 'http://localhost:5000'
     const [inputs, Setinputs] = useState({})
-    const {username, password, name, telphone} = inputs;
     
     const handleChange = e => {
         e.preventDefault()
@@ -16,12 +15,10 @@ export default function SignUp(){
 
     const handleSubmit = e => {
         e.preventDefault()
+        alert(`등록할 회원정보 : ${JSON.stringify(inputs)}`)
         axios.post(proxy+'/api/user/signup', inputs)
         .then(res => {
-            const signup = res.data
-            document.getElementById('result-span').innerHTML = `  
-            <h3>${signup.username}님 회원가입 되었습니다.</h3>     
-            `
+            alert(`${JSON.stringify(res.data)}`)
         })
         .catch(err => alert(err))
     }
@@ -41,12 +38,9 @@ export default function SignUp(){
             <input onChange={handleChange} type="text" name='name' /><br />
             
             <label><b>전화번호</b></label>
-            <input onChange={handleChange} type="text" name='telphone' /><br />
+            <input onChange={handleChange} type="text" name='telephone' /><br />
             
             <button>전 송</button><br/>
-        </div>
-        <div>
-        <span id='result-span'></span>
         </div>
         </form>
     </>)

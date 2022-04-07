@@ -17,12 +17,12 @@ export default function BoardForm(){       // JSON 은 모두 상태 데이터(�
         e.preventDefault()
         axios.post('http://localhost:5000/api/board/write', inputs)
         .then(res => {
-            alert(`결과 : ${res.data.result}`)
+            alert(`결과 : ${JSON.stringify(res.data.result)}`)
         })
         .catch(err => alert(err))
     }
 
-    return (<div>
+    return (<div>  
         <form action='' onSubmit={handleSubmit}>
         <h1>게시글 등록</h1>        
         <div className={style.container}>
