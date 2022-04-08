@@ -3,12 +3,12 @@ import axios from "axios";
 
 export default function SignUp(){
     const proxy = 'http://localhost:5000'
-    const [inputs, Setinputs] = useState({})
+    const [inputs, setInputs] = useState({})
     
     const handleChange = e => {
         e.preventDefault()
         const {name, value} = e.target;
-        Setinputs({
+        setInputs({
             ...inputs, [name]: value
         })
     }

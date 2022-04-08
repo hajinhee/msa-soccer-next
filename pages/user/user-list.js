@@ -1,35 +1,50 @@
-import React from "react";
-import style from "user/style/user-list.module.css";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import tableStyles from "user/style/user-list.module.css";
 
-const Table = ({ columns, data }) => {
+const Table = ({ columns, colspan, data}) => {
     return (
-        <table className={style.table}>
-            <thead>
-                <tr className={style.tr}> 
-                {columns.map((column) => (
-                    <th key={column.username} className={style.td}>{column}</th>
-                ))}
+      <table className={tableStyles.table}>
+        <thead>
+            {/**<th key={column} className={tableStyles.td}>{column}</th> */}
+            <tr className={tableStyles.tr}  >
+            {columns.map((column) => (
+                <th key={column} className={tableStyles.td}>{column}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+                { data.length == 0  ?<tr className={tableStyles.tr}>
+                                      <td colSpan={colspan} className={tableStyles.td}>데이터가 없습니다</td>
+                                      </tr>
+                :data.map((user) => (
+                <tr className={tableStyles.tr}  key={user.username} >
+                  <td className={tableStyles.td}>{user.username}</td>
+                  <td className={tableStyles.td}>{user.password}</td>
+                  <td className={tableStyles.td}>{user.name}</td>
+                  <td className={tableStyles.td}>{user.telephone}</td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr className={style.tr}>
-                    { data.length == 0 ? <td colSpan={4} className={style.td}>데이터가 없습니다.</td>
-                    : <td colSpan={4} className={style.td}>데이터가 있습니다.</td>}
-                </tr>
-            </tbody>
-        </table>
+            ))}
+            
+        </tbody>
+      </table>
     );
-}
-
+  }
+  
 export default function UserList(){
+
     const columns = ["Username", "Password", "Name", "Telephone"];
-    const data = []
+    const [data, setData] = useState([])
+    useEffect(()=>{
+      axios.get('http://localhost:5000/api/user/list').then(res=>{
+        setData(res.data.users)
+      }).catch(err=>{})
+    },[])
     return(<>
-        <h1>사용자 목록</h1>
-        {data.length !=0 && <h3> 회원수 : {data.length}명</h3>}
-        <div className={style.td}>
-        <Table columns={columns} colSpan={4} data={data}/>
+        <h1>사용자 목록</h1>  
+        
+        <div className={tableStyles.td}>
+        <Table columns={columns} colspan={4} data={data}/>
         </div>
         </>)
 }
-
