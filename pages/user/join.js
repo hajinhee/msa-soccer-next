@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import axios from "axios";
 
-export default function SignUp(){
+export default function Join(){
     const proxy = 'http://localhost:5000'
     const [inputs, setInputs] = useState({})
     
