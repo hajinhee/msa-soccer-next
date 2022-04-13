@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import style from 'user/style/user-list.module.css'
+import style from 'user/styles/user-list.module.css'
 
 const Table = ({ columns, colspan, data}) => {
      return (

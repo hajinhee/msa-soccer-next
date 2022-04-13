@@ -1,5 +1,5 @@
 import {React, useState} from 'react';
-import style from "board/style/board-form.module.css";
+import style from "board/styles/board-form.module.css";
 import axios from 'axios';
 
 export default function TeamForm(){

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import tableStyles from "user/style/user-list.module.css";
+import tableStyles from "user/styles/user-list.module.css";
 
 const Table = ({ columns, colspan, data}) => {
     return (
@@ -32,7 +32,6 @@ const Table = ({ columns, colspan, data}) => {
   }
   
 export default function UserList(){
-
     const columns = ["Username", "Password", "Name", "Telephone"];
     const [data, setData] = useState([])
     useEffect(()=>{
