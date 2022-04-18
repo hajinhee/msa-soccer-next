@@ -1,33 +1,34 @@
-import React, {useState} from 'react';
-import { useDispatch } from 'react-redux';
-import { addTitle } from '../../redux/reducers/board.reducer'
-import style from "board/styles/board-form.module.css";
-
-export default function BoardForm(){       // JSON 은 모두 상태 데이터(디폴트는 변하는 것) 겉은 변하지 않는 제이슨, 안은 변하는 상태
-    const [value, setValue] = useState('')
+import React, {useState} from 'react'
+import style from "board/styles/board-form.module.css"
+import { useDispatch } from 'react-redux'
+import { addBoard } from '../../redux/reducers/boardReducer.ts'
+export default function Board(){
     const dispatch = useDispatch()
-    return (<>  
-        <form onSubmit={ e => {
-            e.preventDefault()
-            alert('value? ' +value)
-            if(value) dispatch(addTitle({title: value}))
+    const [inputs, setInputs] = useState({})
 
-        }}>
-        <h1>게시글 등록</h1>        
+    const handleChange = e => {
+       const {name, value} = e.target 
+       setInputs({...inputs, [name]: value})
+    }
+
+   
+    return (<>
+        <h1>게시글 등록</h1>
         <div className={style.container}>
-            <div className={style.row}>  
+            <form onSubmit={e => {
+                e.preventDefault()
+                
+                if(inputs) dispatch(addBoard(inputs))
+            }}>
+            <div className={style.row}>
                 <div className={style.col25}>
-                <label className={style.label} htmlFor="title">글 제목</label>
+                <label className={style.label} htmlFor="passengerId">글 제목</label>
                 </div>
                 <div className={style.col75}>
-                <input type="text" className={style.inputText} onChange={e => {
-                    e.preventDefault()
-                    setValue(e.target.value)
-                }}
+                <input type="text" className={style.inputText} onChange={handleChange}
                 id="title" name="title" placeholder="글 제목 입력"/>
                 </div>
             </div>
-            {/**
             <div className={style.row}>
                 <div className={style.col25}>
                 <label htmlFor="name">게시글 작성자 이름</label>
@@ -59,11 +60,12 @@ export default function BoardForm(){       // JSON 은 모두 상태 데이터(�
                 </div>
             </div>
             <br/>
-            */}
+            
             <div className={style.row}>
-                <input type="submit" value="Submit"/><br/> 
+                <input type="submit" className={style.inputSubmit} 
+                value="Submit"/>
             </div>
-        </div>
-        </form>
+            </form>
+            </div>
     </>)
 }

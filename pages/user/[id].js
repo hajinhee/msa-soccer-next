@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { CloseOutlined } from '@ant-design/icons'
 
 Profile.getInitialProps = async ({ query }) => {
   const {id} = query

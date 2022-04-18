@@ -1,6 +1,5 @@
 import {Layout} from "./common";
-import wrapper from '../redux/store'
-import { PropTypes } from "prop-types";
+import { wrapper } from '../redux/store.ts'
 import Head from 'next/head'
 const App = ({ Component, pageProps}) => {
   return (<>
@@ -17,10 +16,6 @@ const App = ({ Component, pageProps}) => {
     </Layout>
     </>
   )
-  App.propTypes = {
-    Component: PropTypes.elementType.isRequired,
-    pageProps: PropTypes.any.isRequired
-  }
 }
 
 export default wrapper.withRedux(App)
