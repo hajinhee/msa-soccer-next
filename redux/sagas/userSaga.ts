@@ -9,6 +9,7 @@ interface UserJoinType{
         name:string, phone:string, birth:string, address:string
     }
 }
+
 interface UserJoinSuccessType{
     type: string;
     payload: {

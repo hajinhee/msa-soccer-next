@@ -17,6 +17,7 @@
     "antd": "^4.19.3",
     "axios": "^0.26.1",
     "framer-motion": "^6.2.9",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "next": "12.1.0",
     "next-redux-wrapper": "^7.0.5",
