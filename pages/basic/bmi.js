@@ -16,9 +16,9 @@ export default function Bmi(){   // 함수
     }
     const handleSubmit = e => {             // handleClick => 상수 
         e.preventDefault()
-        axios.post(proxy+'/api/basic/bmi', inputs)
+        axios.post(proxy+'/basic/bmi', inputs)
         .then(res => {
-            alert(`결과 : ${JSON.stringify(res.data.result)}`)
+            alert(`결과 : ${JSON.stringify(res.data)}`)
         })
         .catch(err => alert(err))
     }
